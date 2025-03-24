@@ -41,11 +41,44 @@ kubectl apply -f kubernetes/person-profile-ms-deployment.yaml
 kubectl get pods
 kubectl get services
 ```
+## 4. Probar los Microservicios
 
-### 4. Probar los Microservicios
 Los microservicios estarán disponibles en los siguientes endpoints:
-- **Crear de Perfiles:** `http://localhost:8080/profile/create-profile`
-- **Eliminar Perfiles:** `http://localhost:8080/profile/delete-profile/{id}` (Tener en cuenta que se debe enviar un Authorization = "Bearer 'token'")
-- **Perfil de Personas:** `http://localhost:7070/profile/get-profile`
+
+### Crear Perfiles
+**Endpoint:** `POST http://localhost:8080/profile/create-profile`
+
+**Body (JSON):**
+```json
+{
+    "name": "Test",
+    "lastName": "Test2",
+    "cellphone": "8888888888",
+    "email": "test@hotmail.com",
+    "address": "Calle Cuarta 123"
+}
+```
+
+**Descripción:** Al crear un perfil, se genera un token que puede ser utilizado en el endpoint de eliminación.
+
+---
+
+### Eliminar Perfiles
+**Endpoint:** `DELETE http://localhost:8080/profile/delete-profile/{id}`
+
+**Encabezado requerido:**
+```
+Authorization: Bearer <token>
+```
+
+**Descripción:** Se debe reemplazar `{id}` con el identificador del perfil a eliminar y enviar el token generado en la creación.
+
+---
+
+### Obtener Perfil de Personas
+**Endpoint:** `GET http://localhost:7070/profile/get-profile`
+
+**Descripción:** Permite recuperar la información de un perfil almacenado en el sistema.
+
 
 
