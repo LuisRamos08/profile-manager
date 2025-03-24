@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  person-crud-ms:
+    build:
+      context: ./person-crud-ms  # Ruta al directorio del microservicio
+      dockerfile: Dockerfile      # Nombre del Dockerfile (opcional si se llama Dockerfile)
+    container_name: person-crud-ms
+    ports:
+      - "9000:9000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - profile-network
+
+  person-profile-ms:
+    build:
+      context: ./person-profile-ms  # Ruta al directorio del microservicio
+      dockerfile: Dockerfile        # Nombre del Dockerfile (opcional si se llama Dockerfile)
+    container_name: person-profile-ms
+    ports:
+      - "9001:9001"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - profile-network
+
+networks:
+  profile-network:
+    driver: bridge
