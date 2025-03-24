@@ -18,6 +18,17 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 9001
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: "mongodb://admin:password@mongodb:27017/person?authSource=admin&retryWrites=true&w=majority&connectTimeoutMS=10000&socketTimeoutMS=30000&serverSelectionTimeoutMS=30000&retryReads=true"
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "800m"
+              memory: "1Gi"
+
 ---
 apiVersion: v1
 kind: Service
