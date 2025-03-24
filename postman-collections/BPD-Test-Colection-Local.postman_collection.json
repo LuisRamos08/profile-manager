@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "353326b6-9840-46bb-ab77-7279ac52d169",
+		"name": "BPD-Test-Colection-Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41489229"
+	},
+	"item": [
+		{
+			"name": "person-crud-ms",
+			"item": [
+				{
+					"name": "create-profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"lastName\": \"Test2\",\r\n    \"cellphone\": \"8888888888\",\r\n    \"email\": \"test@hotmail.com\",\r\n    \"address\": \"Calle Cuarta 123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/profile/create-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"profile",
+								"create-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyOWE5N2UyNi1jNzk1LTQ0MzEtYmM2MS1hYjc5NmZmOGIwYzUiLCJpYXQiOjE3NDI3NzE4NTMsImV4cCI6MTc0Mjg1ODI1M30.Y0oNH24rGkDW3Brphy9eA4jJQAb0XHSVe-XjSmKtZBJibOM9muHoonojCbL4AazDF4PvNP0hIh6YtTnSsEmFKGF2uLHTnvnwibgndY83mxB-hJJjeFoFVLpkHvaGaOb2k8GmwF_b6AmHWkMJzzcbt5zf6SCFo-cilf8D3F0_KEZ4aPPxSoryzWwGlo77C0dxEk10xAjeMHnJBbE8SR2kQEnXOXHxdHXW5awokCNcweczpbDAU5t3tSvi8dNXqYjhdTLPpdNvtjRM7jd8P5jnZKxEVsg2xIvBOPRchvST5nRQZGy23IjgdoZDWgTzXgpFolZ9LeCwbBKFyBo44F7rMw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9000/profile/delete-profile/67e0968d75e5ae44881b7815",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"profile",
+								"delete-profile",
+								"67e0968d75e5ae44881b7815"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "person-profile-ms",
+			"item": [
+				{
+					"name": "get-profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9001/profile/get-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"profile",
+								"get-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9001/profile/get-profile/search?name=Luis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"profile",
+								"get-profile",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Luis"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Docker Start Test",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/HelloWorld",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"HelloWorld"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
