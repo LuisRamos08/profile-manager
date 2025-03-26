@@ -37,4 +37,20 @@ public class PersonCrudController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<Iterable<Person>> getAllPersons(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestHeader("X-API-KEY") String apiKey) {
+
+        try {
+            String token = authHeader.replace("Bearer ", ""); // Extraer el token del header
+            Iterable<Person> persons = personService.getAllPersons(token, apiKey);
+            return ResponseEntity.ok(persons);
+        } catch (SecurityException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
 }

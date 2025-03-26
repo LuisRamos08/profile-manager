@@ -29,4 +29,20 @@ public class PersonCrudService {
         // Si el token es válido, eliminar la persona
         personRepository.deleteById(id);
     }
+
+    public Iterable<Person> getAllPersons(String token, String apiKey) {
+        // Validar API Key
+        if (!"super-secret-key".equals(apiKey)) {
+            throw new SecurityException("Invalid API Key");
+        }
+
+        // Validar el token usando JwtTokenService
+        if (!jwtTokenService.validateToken(token)) {
+            throw new SecurityException("Invalid token");
+        }
+
+        // Si el token y la API Key son válidos, devolver la lista de personas
+        return personRepository.findAll();
+    }
+
 }

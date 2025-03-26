@@ -20,7 +20,9 @@ spec:
             - containerPort: 9001
           env:
             - name: SPRING_DATA_MONGODB_URI
-              value: "mongodb://admin:password@mongodb:27017/person?authSource=admin&retryWrites=true&w=majority&connectTimeoutMS=10000&socketTimeoutMS=30000&serverSelectionTimeoutMS=30000&retryReads=true"
+              value: "mongodb://admin:password@mongodb:27017/person?authSource=admin"
+            - name: PERSON_CRUD_URL
+              value: "http://person-crud-ms:9000/profile/get-all"
           resources:
             requests:
               cpu: "200m"
@@ -35,7 +37,7 @@ kind: Service
 metadata:
   name: person-profile-ms
 spec:
-  type: LoadBalancer
+  type: LoadBalancer  # Mantenemos LoadBalancer para acceso externo
   selector:
     app: person-profile-ms
   ports:
